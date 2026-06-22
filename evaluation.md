@@ -177,37 +177,64 @@ A successful request returns HTTP `200 OK` and an array of evaluation results.
 ```json
 [
   {
-    "key": "bb1aeec1-9a45-4670-9f86-77b25e8540e4",
-    "index": "2026-06-09T06:00:00Z",
-    "label": "FDP",
-    "value": [
-      "duration",
-      "00:55:00"
-    ],
-    "cachedValue": [
-    ]
+    "Label": "PayIllness",
+    "Key": "45",
+    "Value": 5,
+    "$IndexType": "datetime",
+    "Index": "2025-03-04T23:00:00Z",
+    "Values": {
+      "code": "995",
+      "label": "DK Flight Deck Illness",
+      "$startType": "datetime",
+      "start": "2025-02-28T00:00:00Z",
+      "$endType": "datetime",
+      "end": "2025-03-04T00:00:00Z"
+    }
   },
   {
-    "key": "af1d38a4-375d-48c3-ad26-431bb6a6aaed",
-    "index": "2026-06-09T07:10:00Z",
-    "label": "FDP",
-    "value": [
-      "duration",
-      "02:20:00"
-    ],
-    "cachedValue": [
-      "duration",
-      "02:20:00"
-    ]
+    "Label": "PayIllness",
+    "Key": "76",
+    "Value": 5,
+    "$IndexType": "datetime",
+    "Index": "2025-03-30T22:00:00Z",
+    "Values": {
+      "code": "995",
+      "label": "DK Flight Deck Illness",
+      "$startType": "datetime",
+      "start": "2025-03-26T00:00:00Z",
+      "$endType": "datetime",
+      "end": "2025-03-30T00:00:00Z"
+    }
   },
   {
-    "key": "bb1aeec1-9a45-4670-9f86-77b25e8540e4",
-    "index": "2026-06-09T06:00:00Z",
-    "label": "FDPlimit",
-    "value": [
-      "duration",
-      "13:00:00"
-    ]
+    "Label": "PayIllness",
+    "Key": "79",
+    "Value": 2,
+    "$IndexType": "datetime",
+    "Index": "2025-04-01T22:00:00Z",
+    "Values": {
+      "code": "995",
+      "label": "DK Flight Deck Illness",
+      "$startType": "datetime",
+      "start": "2025-03-31T00:00:00Z",
+      "$endType": "datetime",
+      "end": "2025-04-01T00:00:00Z"
+    }
+  },
+  {
+    "Label": "PayIllness",
+    "Key": "83",
+    "Value": 3,
+    "$IndexType": "datetime",
+    "Index": "2025-04-04T22:00:00Z",
+    "Values": {
+      "code": "995",
+      "label": "DK Flight Deck Illness",
+      "$startType": "datetime",
+      "start": "2025-04-02T00:00:00Z",
+      "$endType": "datetime",
+      "end": "2025-04-04T00:00:00Z"
+    }
   }
 ]
 ```
