@@ -1,0 +1,67 @@
+{
+  "Data": [
+    [
+      {
+        "Rank": "CAP",
+        "ActingRank": "CAP",
+        "EmploymentDate": "2020-01-01T00:00:00",
+        "BirthDate": "1980-01-01T00:00:00",
+        "IsActive": true,
+        "IsDuty": true,
+        "FlightDeckCount": 2,
+        "Code": "Act0",
+        "EmploymentPercentage": 100,
+        "HomeBaseCode": "MMX",
+        "AirlineCode": "AWX",
+        "FlightNumber": 4100,
+        "STD": "2026-06-09T06:00:00Z",
+        "DepAirportCode": "MMX",
+        "ServiceTypeCode": "J",
+        "STA": "2026-06-09T06:55:00Z",
+        "ArrAirportCode": "GOT",
+        "Registration": "SE-DUU",
+        "AcTypeCode": "221",
+        "AcVersion": "221",
+        "AcConfiguration": "Y135"
+      },
+      {
+        "Rank": "CAP",
+        "ActingRank": "CAP",
+        "EmploymentDate": "2020-01-01T00:00:00",
+        "BirthDate": "1980-01-01T00:00:00",
+        "IsActive": true,
+        "IsDuty": true,
+        "FlightDeckCount": 2,
+        "Code": "Act1",
+        "EmploymentPercentage": 100,
+        "HomeBaseCode": "MMX",
+        "AirlineCode": "AWX",
+        "FlightNumber": 4100,
+        "Sequence": 1,
+        "STD": "2026-06-09T07:10:00Z",
+        "DepAirportCode": "GOT",
+        "ServiceTypeCode": "J",
+        "STA": "2026-06-09T09:15:00Z",
+        "ArrAirportCode": "LLA",
+        "Registration": "SE-DUU",
+        "AcTypeCode": "221",
+        "AcVersion": "221",
+        "AcConfiguration": "Y135"
+      }
+    ]
+  ],
+  "Keys": [
+    [
+      "bb1aeec1-9a45-4670-9f86-77b25e8540e4",
+      "af1d38a4-375d-48c3-ad26-431bb6a6aaed"
+    ]
+  ],
+  "Labels": [ 
+  ],
+  "Roles": [
+  ],
+  "Tags": [
+  ],
+  "EvaluationPeriodStart": "2026-06-08T00:00:00Z",
+  "EvaluationPeriodEnd": "2026-06-12T23:59:59.999Z"
+}
