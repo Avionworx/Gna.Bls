@@ -2,7 +2,13 @@
 
 The data model defines how business domain data is structured and stored within the service.
 
-The service includes a built-in default GnA data model. Alternatively, you can define a custom data model in a YAML file named `.model.yaml`.
+The service includes a built-in default GnA data model.
+
+ * [`GnA model(json)`](./gna.model.json) 
+ * [`GnA model(yaml)`](./gna.model.yaml) 
+
+
+Alternatively, you can define a custom data model in a YAML file named `.model.yaml`.
 
 ## YAML Model Example
 
@@ -252,4 +258,10 @@ Orders:
           properties:
             SerialNumbers:
               type: array   # Not supported
+```
+
+Data model definition:
+
+```text
+gna.model.json
 ```
