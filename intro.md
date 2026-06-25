@@ -10,8 +10,8 @@ In practice, you send data to the service in a format defined by your model, and
 
 An environment represents a complete set of business configuration, including:
 
-* The data model that defines the structure of input and output data
 * The business rule definitions used during processing
+* Optional data model that defines the structure of input and output data
 
 You can have multiple environments, allowing you to separate different business domains, projects, or stages of development.
 
