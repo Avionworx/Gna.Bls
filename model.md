@@ -259,9 +259,4 @@ Orders:
             SerialNumbers:
               type: array   # Not supported
 ```
-
-Data model definition:
-
-```text
-gna.model.json
-```
+ 
