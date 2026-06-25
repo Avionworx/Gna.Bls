@@ -82,7 +82,7 @@ code: >-
 
 ### Table
 
-A table definition stores semi-static reference data in a tabular format.
+A table definition is used to store semi-static reference data in a tabular format. Its data can be accessed and processed by other definitions.
 
 ```yaml
 # Aircraft fuel consumption reference data.
