@@ -172,7 +172,7 @@ Content-Type: application/json
 
 ## Response
 
-A successful request returns HTTP `200 OK` and an array of evaluation results.
+A successful request returns an HTTP `200 OK` response containing an array of evaluation results.
 
 ```json
 [
@@ -207,16 +207,56 @@ A successful request returns HTTP `200 OK` and an array of evaluation results.
 ]
 ```
 
-Each item in the response represents the result produced by a business rule evaluation and may contain:
+### Plain text output
 
-- The evaluated rule or label
-- Outcome or status
-- Related keys from the input data
-- Calculated values
-- Alerts or violations
-- Additional rule-specific metadata
+For debugging and testing purposes, results can also be returned in a tabular plain-text format by setting the `Accept` header to `text/plain`.
 
----
+```http
+POST /AWX/master/evaluate
+Content-Type: application/json
+Accept: text/plain
+```
+
+```text
+[Index]       FDPlimit  FDP
+------------  --------  -----
+09JUN26 0600  13:00     00:55
+09JUN26 0710            02:20
+```
+
+### Response properties
+
+Each object in the response represents the output of a single business rule evaluation. Depending on the type of result, the following properties may be present:
+
+| Property         | Type                  | Description                                                                                                                                                                                                         |
+| ---------------- | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Label`          | `string`              | Name of the definition that produced the result (for example, an alert or calculation). Always present.                                                                                                             |
+| `Value`          | `any`                 | The primary result value. The JSON type depends on the underlying value (for example, string, number, or boolean). If the type cannot be inferred unambiguously, a corresponding `$ValueType` property is included. |
+| `Index`          | `any`                 | Identifies the position of the result, typically as a date/time on a timeline. Optional.                                                                                                                            |
+| `Key`            | `any`                 | Identifier of the input data object that produced the result. Can be used to correlate response items with the input data. Always present.                                                                          |
+| `From`           | `any`                 | Effective start of the result's validity period, typically a date/time. Optional.                                                                                                                                   |
+| `To`             | `any`                 | Effective end of the result's validity period, typically a date/time. Optional.                                                                                                                                     |
+| `Group`          | `string`              | Group to which the result belongs. Optional.                                                                                                                                                                        |
+| `Role` / `Roles` | `string` / `string[]` | Returned only when role information is requested.                                                                                                                                                                   |
+| `CachedValue`    | `any`                 | Optional value intended to be cached by the client and reused in subsequent requests.                                                                                                                               |
+| `Values`         | `object`              | Optional collection of additional values associated with the result, such as alert severity or threshold information.                                                                                               |
+
+### Type metadata
+
+Some values cannot be represented with a unique native JSON type. In these cases, the response includes additional metadata properties prefixed with `$` to describe the original data type.
+
+For example:
+
+```json
+{
+  "$ValueType": "duration",
+  "Value": "00:55:00"
+}
+```
+
+In this example, the JSON value is a string, but `$ValueType` indicates that it represents a `duration` rather than plain text.
+
+The same convention applies to other typed properties such as `Index` (`$IndexType`) and `CachedValue` (`$CachedValueType`).
 
 ## Common Usage Patterns
 
