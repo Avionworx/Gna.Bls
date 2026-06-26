@@ -226,7 +226,7 @@ Accept: text/plain
 
 ### Response properties
 
-Each object in the response represents the output of a single business rule evaluation. Depending on the type of result, the following properties may be present:
+Each object in the response represents the output of a single defintion evaluation. Depending on the type of result, the following properties may be present:
 
 | Property         | Type                  | Description                                                                                                                                                                                                         |
 | ---------------- | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -237,7 +237,7 @@ Each object in the response represents the output of a single business rule eval
 | `From`           | `any`                 | Effective start of the result's validity period, typically a date/time. Optional.                                                                                                                                   |
 | `To`             | `any`                 | Effective end of the result's validity period, typically a date/time. Optional.                                                                                                                                     |
 | `Group`          | `string`              | Group to which the result belongs. Optional.                                                                                                                                                                        |
-| `Role` / `Roles` | `string` / `string[]` | Returned only when role information is requested.                                                                                                                                                                   |
+| `Role` | `string` | Returned only when role information is requested.                                                                                                                                                                   |
 | `CachedValue`    | `any`                 | Optional value intended to be cached by the client and reused in subsequent requests.                                                                                                                               |
 | `Values`         | `object`              | Optional collection of additional values associated with the result, such as alert severity or threshold information.                                                                                               |
 
