@@ -79,6 +79,8 @@
     margin-top: 8px;
 }
     </style>
+<script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>
+<script type="module" src="index.js"></script> 
 </head>
 <body>
 
@@ -116,11 +118,11 @@
                 <input type="email" id="email" placeholder="your@email.com">
             </label>
         
-            <button type="button" onclick="saveSettings()">
+            <button type="button" id="saveSettingsBtn">
                 Save Settings (unsecure)
             </button>
         
-            <button type="button" onclick="clearSettings()">
+            <button type="button" id="clearSettingsBtn">
                 Clear Settings
             </button>
         </div>
@@ -137,8 +139,8 @@
                   {
                     "Rank": "CAP",
                     "ActingRank": "CAP",
-                    "EmploymentDate": "2020-01-01T00:00:00",
-                    "BirthDate": "1980-01-01T00:00:00",
+                    "EmploymentDate": "2020-01-01T00:00:00Z",
+                    "BirthDate": "1980-01-01T00:00:00Z",
                     "IsActive": true,
                     "IsDuty": true,
                     "FlightDeckCount": 2,
@@ -160,8 +162,8 @@
                   {
                     "Rank": "CAP",
                     "ActingRank": "CAP",
-                    "EmploymentDate": "2020-01-01T00:00:00",
-                    "BirthDate": "1980-01-01T00:00:00",
+                    "EmploymentDate": "2020-01-01T00:00:00Z",
+                    "BirthDate": "1980-01-01T00:00:00Z",
                     "IsActive": true,
                     "IsDuty": true,
                     "FlightDeckCount": 2,
@@ -205,10 +207,15 @@
         <br><br>
 
  
-        <button onclick="runDemo()">
+        <button id="runDemoButton">
             Evaluate
         </button>
 
+        <label for="acceptSelect">Response format</label>
+        <select id="acceptSelect">
+            <option selected value="application/json">application/json</option>
+            <option value="text/plain">text/plain</option>
+            </select>
 
         <h2>Response</h2>
 
@@ -221,142 +228,13 @@
 
         <div class="settings">
 
-            <label>
-                Labels
-                <input type="text" id="labels" placeholder="BLH,FDP">
-            </label>
-        
+            <input type="text" id="labels" placeholder="BLH,FDP,..."/>
         </div>
         
 
     </div>
 </div>
 
-<script>
-
-async function runDemo() {
-
-    try {
-
-        const url =
-        document.getElementById("url").value.trim();
-
-        const env =
-        document.getElementById("env").value.trim();
-
-        const blueprint =
-        document.getElementById("blueprint").value.trim() || "master";
-
-        const apiKey =
-        document.getElementById("apiKey").value.trim();
-
-        const email =
-        document.getElementById("email").value.trim();
-
-        document.getElementById("result").textContent =
-            "Authenticating...";
-
-        const authResponse =
-            await fetch(
-                `${url}/${env}/login?email=${email}`,
-                {
-                    method: "POST",
-                    headers: {
-                        "X-API-KEY": apiKey
-                    }
-                });
-
-        const jwt =
-            await authResponse.text();
-
-        document.getElementById("result").textContent =
-            "Authenticated. Running evaluation...";
-
-        const payload =
-            document.getElementById("payload").value;
-
-        let lbls = document.getElementById("labels").value.trim() || 'BLH,FDP';
-        lbls = (lbls.split(",").map((item, i) => `label=${item}`)).join("&")
-
-        const response =
-            await fetch(
-                `${url}/${env}/${blueprint}/evaluate?${lbls}`,
-                {
-                    method: "POST",
-                    headers: {
-                        "Authorization": `Bearer ${jwt}`,
-                        "Content-Type": "application/json"
-                    },
-                    body: payload
-                });
-
-        const json =
-            await response.json();
-
-        document.getElementById("result").textContent =
-            JSON.stringify(json, null, 2);
-
-    }
-    catch (err) {
-
-        document.getElementById("result").textContent =
-            err.toString();
-    }
-}
-
-function loadSettings() {
-    document.getElementById("url").value =
-        localStorage.getItem("bls_url") || "";
-
-    document.getElementById("env").value =
-        localStorage.getItem("bls_env") || "";
-
-    document.getElementById("blueprint").value =
-        localStorage.getItem("bls_blueprint");
-
-    document.getElementById("apiKey").value =
-        localStorage.getItem("bls_apiKey") || "";
-
-    document.getElementById("email").value =
-        localStorage.getItem("bls_email") || "";
-}
-
-function saveSettings() {
-    localStorage.setItem(
-        "bls_url",
-        document.getElementById("url").value);
-
-    localStorage.setItem(
-        "bls_env",
-        document.getElementById("env").value);
-
-    localStorage.setItem(
-        "bls_blueprint",
-        document.getElementById("blueprint").value);
-
-    localStorage.setItem(
-        "bls_apiKey",
-        document.getElementById("apiKey").value);
-
-    localStorage.setItem(
-        "bls_email",
-        document.getElementById("email").value);
- 
-}
-
-function clearSettings() {
-    localStorage.removeItem("bls_url");
-    localStorage.removeItem("bls_env");
-    localStorage.removeItem("bls_blueprint");
-    localStorage.removeItem("bls_apiKey");
-    localStorage.removeItem("bls_email");
-
-    loadSettings();
-}
-
-window.addEventListener("load", loadSettings);
- 
-</script>
 
 </body>
 </html>
